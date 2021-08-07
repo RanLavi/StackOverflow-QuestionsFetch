@@ -11,7 +11,6 @@ import {
   StyleSheet,
   Text,
   View,
-  Button,
   TextInput,
   Image,
   FlatList,
@@ -118,12 +117,16 @@ const App = () => {
           }}
         />
       </Modal>
-      <View style={styles.darkModeButtonCotainer}>
-        <Button
-          title={isDarkMode ? 'Let There Be Light' : 'Let There Be Darkness'}
-          onPress={() => setIsDarkMode(!isDarkMode)}
-        />
-      </View>
+      <Pressable
+        style={[
+          styles.darkModeButton,
+          {backgroundColor: backgroundStyleColor, borderColor: textStyleColor},
+        ]}
+        onPress={() => setIsDarkMode(!isDarkMode)}>
+        <Text style={{color: textStyleColor}}>
+          {isDarkMode ? 'Let There Be Light' : 'Let There Be Darkness'}
+        </Text>
+      </Pressable>
       <Text style={[styles.title, {color: textStyleColor}]}>
         Get Stack Overflow Posts
       </Text>
@@ -206,8 +209,11 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
   },
-  darkModeButtonCotainer: {
+  darkModeButton: {
     marginTop: '5%',
+    borderWidth: 1,
+    padding: '3%',
+    borderRadius: 10,
   },
   title: {
     textAlign: 'center',
